@@ -1,11 +1,27 @@
-name: Hello World
+name: Multi-tâches Workflow
 
 on: [push]
 
+
 jobs:
-  say_hello:
+  tasks:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print hello
-        run: echo "Bonjour depuis GitHub Actions !"
+      # Étape 1 : Vérifier le code source
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Étape 2 : Afficher la branche actuelle à partir de github.ref
+      - name: Afficher la branche actuelle
+        run: echo "La branche actuelle est : ${GITHUB_REF}"
+
+      # Étape 3 : Afficher la date actuelle
+      - name: Afficher la date actuelle
+        run: echo "La date actuelle est : $(date)"
+
+      # Étape 4 : Lister les fichiers du dépôt
+      - name: Lister les fichiers
+        run: |
+          echo "Liste des fichiers dans le dépôt :"
+          ls -l
