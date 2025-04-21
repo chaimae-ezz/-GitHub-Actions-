@@ -2,7 +2,6 @@ name: Multi-tâches Workflow
 
 on: [push]
 
-
 jobs:
   tasks:
     runs-on: ubuntu-latest
@@ -14,14 +13,8 @@ jobs:
 
       # Étape 2 : Afficher la branche actuelle à partir de github.ref
       - name: Afficher la branche actuelle
-        run: echo "La branche actuelle est : ${GITHUB_REF}"
-
-      # Étape 3 : Afficher la date actuelle
-      - name: Afficher la date actuelle
-        run: echo "La date actuelle est : $(date)"
-
-      # Étape 4 : Lister les fichiers du dépôt
-      - name: Lister les fichiers
         run: |
-          echo "Liste des fichiers dans le dépôt :"
-          ls -l
+          BRANCH_NAME=$(echo ${GITHUB_REF} | sed 's/refs\/heads\///')
+          echo "La branche actuelle est : ${BRANCH_NAME}"
+
+      # Étape 3 :
